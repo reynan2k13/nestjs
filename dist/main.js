@@ -18,7 +18,7 @@ async function bootstrap() {
     app.use((0, express_1.urlencoded)({ extended: true, limit: '50mb' }));
     const config = new swagger_1.DocumentBuilder()
         .setTitle('QA Web System')
-        .setDescription('API')
+        .setDescription('API DOCUMENTATION')
         .setVersion('1.0.0')
         .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' }, 'jwt')
         .build();

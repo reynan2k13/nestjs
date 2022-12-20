@@ -15,8 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
+const swagger_1 = require("@nestjs/swagger");
 const auth_service_1 = require("./auth.service");
 const login_dto_1 = require("./dto/login.dto");
+const change_password_dto_1 = require("./dto/change-password.dto");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -24,16 +26,27 @@ let AuthController = class AuthController {
     async login(loginDto) {
         return this.authService.loginWithCredentials(loginDto);
     }
+    async changePassword(changePasswordDto) {
+        return this.authService.changePassword(changePasswordDto);
+    }
 };
 __decorate([
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('local')),
     (0, common_1.Post)('login'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [login_dto_1.LoginDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)('change-password'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [change_password_dto_1.ChangePasswordDto]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "changePassword", null);
 AuthController = __decorate([
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('local')),
+    (0, swagger_1.ApiTags)('Login and Password'),
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthController);

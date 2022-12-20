@@ -18,7 +18,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('QA Web System')
-    .setDescription('API')
+    .setDescription('API DOCUMENTATION')
     .setVersion('1.0.0')
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },

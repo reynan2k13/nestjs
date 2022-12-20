@@ -2,8 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import {IsNotEmpty } from 'class-validator';
 
 export class LoginDto {
-
-  _id: string;
   
   @ApiProperty()
   @IsNotEmpty()
@@ -13,3 +11,4 @@ export class LoginDto {
   @IsNotEmpty()
   password: string;
 }
+

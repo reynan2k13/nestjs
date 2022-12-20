@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserModule } from './users/users.module';
+import { UserModule } from './management/users/users.module';
 import { LoggerMiddleware } from './utils/logger.middleware';
 import { AuthModule } from './auth/auth.module';
 

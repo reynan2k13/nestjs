@@ -12,7 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
-const users_service_1 = require("../users/users.service");
+const users_service_1 = require("../management/users/users.service");
+const bcrypt = require("bcrypt");
 let AuthService = class AuthService {
     constructor(usersService, jwtService) {
         this.usersService = usersService;
@@ -20,17 +21,33 @@ let AuthService = class AuthService {
     }
     async validateUserCredentials(username, password) {
         console.log(username, password);
-        const user = await this.usersService.getUser({ username, password });
-        return user !== null && user !== void 0 ? user : null;
+        const user = await this.usersService.getUser(username);
+        if (user) {
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (isMatch) {
+                return user;
+            }
+            else {
+                return null;
+            }
+        }
+        else {
+            return null;
+        }
     }
     async loginWithCredentials(user) {
         const payload = { username: user.username };
         return {
             username: user.username,
-            userId: user._id,
             access_token: this.jwtService.sign(payload),
             expiredAt: Date.now() + 60000,
         };
+    }
+    async changePassword(user) {
+        console.log("user=============", user);
+        const salt = await bcrypt.genSalt();
+        const password = await bcrypt.hash(user.new_password, salt);
+        return await this.usersService.updatePassword(user.username, password);
     }
 };
 AuthService = __decorate([
