@@ -9,9 +9,8 @@ export const UserSchema = new mongoose.Schema({
   group_name: { type: String},
   facility_name: { type: String},
   location: { type: String},
-  projects: { type: Array },
-  menu_access: { type: Array },
   is_active: { type: Boolean},
+  image : { type : String}
 
 }, {versionKey : false});
 

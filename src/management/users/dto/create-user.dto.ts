@@ -46,17 +46,17 @@ export class CreateUserDto {
   @IsNotEmpty()
   location: string;
 
-  @ApiProperty({
-    isArray: true,
-    type: projects
-  })
-  @IsNotEmpty()
-  projects: projects[];
+  // @ApiProperty({
+  //   isArray: true,
+  //   type: projects
+  // })
+  // @IsNotEmpty()
+  // projects: projects[];
 
 
-  @ApiProperty()
-  @IsNotEmpty()
-  menu_access: Array<any>;
+  // @ApiProperty()
+  // @IsNotEmpty()
+  // menu_access: Array<any>;
 
 
   @ApiProperty()
